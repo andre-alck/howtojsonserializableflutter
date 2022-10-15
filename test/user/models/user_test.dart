@@ -20,4 +20,27 @@ void main() {
       );
     },
   );
+
+  test(
+    'Given JSON When user is created Then compare data between them',
+    () {
+      Map<String, dynamic> json = {
+        "name": 'name',
+        "age": 99,
+      };
+
+      final user = User.fromJson(
+        json,
+      );
+
+      expect(
+        user.name,
+        'name',
+      );
+      expect(
+        user.age,
+        99,
+      );
+    },
+  );
 }
