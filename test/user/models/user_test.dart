@@ -14,8 +14,8 @@ void main() {
           const int age = 99;
 
           final user = User(
-            name,
-            age,
+            name: name,
+            age: age,
           );
 
           expect(
