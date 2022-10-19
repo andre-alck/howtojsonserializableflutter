@@ -8,7 +8,7 @@ part 'user.g.dart';
 class User {
   String name;
   int age;
-  Shoes? shoes;
+  List<Shoes>? shoes;
 
   User({
     this.shoes,

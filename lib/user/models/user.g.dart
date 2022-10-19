@@ -7,9 +7,9 @@ part of 'user.dart';
 // **************************************************************************
 
 User _$UserFromJson(Map<String, dynamic> json) => User(
-      shoes: json['shoes'] == null
-          ? null
-          : Shoes.fromJson(json['shoes'] as Map<String, dynamic>),
+      shoes: (json['shoes'] as List<dynamic>?)
+          ?.map((e) => Shoes.fromJson(e as Map<String, dynamic>))
+          .toList(),
       name: json['name'] as String,
       age: json['age'] as int,
     );
