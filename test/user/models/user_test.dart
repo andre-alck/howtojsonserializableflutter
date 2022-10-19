@@ -144,11 +144,13 @@ void main() {
               Map<String, dynamic> json = {
                 "name": "name",
                 "age": 99,
-                "shoes": {
-                  "color": "blue",
-                  "size": 40,
-                  "price": 100.0,
-                },
+                "shoes": [
+                  {
+                    "color": "blue",
+                    "size": 40,
+                    "price": 100.0,
+                  }
+                ],
               };
 
               final user = User.fromJson(
@@ -162,26 +164,27 @@ void main() {
                 user.age,
                 99,
               );
+
               expect(
-                user.shoes?.color,
+                user.shoes?[0].color,
                 "blue",
               );
               expect(
-                user.shoes?.size,
+                user.shoes?[0].size,
                 40,
               );
               expect(
-                user.shoes?.price,
+                user.shoes?[0].price,
                 100.0,
               );
             },
           );
 
           test(
-            'Given required data (including shoes) as map When user is created by fromJson Then check user',
+            'Given required data (including shoes) as string When user is created by fromJson Then check user',
             () {
               String data =
-                  '{"name": "name","age": 99,"shoes": {"color": "blue","size": 40,"price": 100.0}}';
+                  '{"name": "name","age": 99,"shoes": [{"color": "blue","size": 40,"price": 100.0}]}';
 
               final user = User.fromJson(
                 json.decode(
@@ -198,15 +201,15 @@ void main() {
                 99,
               );
               expect(
-                user.shoes?.color,
+                user.shoes?[0].color,
                 "blue",
               );
               expect(
-                user.shoes?.size,
+                user.shoes?[0].size,
                 40,
               );
               expect(
-                user.shoes?.price,
+                user.shoes?[0].price,
                 100.0,
               );
             },
