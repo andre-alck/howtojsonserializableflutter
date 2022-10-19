@@ -214,6 +214,91 @@ void main() {
               );
             },
           );
+
+          test(
+            'Given overcomplete data (including shoes) as map When user is created by fromJson Then chekc user',
+            () {
+              Map<String, dynamic> json = {
+                "name": "name",
+                "age": 99,
+                "shoes": [
+                  {
+                    "color": "blue",
+                    "size": 40,
+                    "price": 100.1,
+                    "abc": "xyz",
+                  },
+                  {
+                    "color": "red",
+                    "size": 20,
+                    "price": 100.2,
+                    "abc": "xyz",
+                  },
+                  {
+                    "color": "green",
+                    "size": 50,
+                    "price": 100.3,
+                    "abc": "xyz",
+                  },
+                  {
+                    "color": "yellow",
+                    "size": 60,
+                    "price": 100.4,
+                    "abc": "xyz",
+                  },
+                  {
+                    "color": "orange",
+                    "size": 10,
+                    "price": 100.5,
+                    "abc": "xyz",
+                  },
+                ],
+                "foo": "bar",
+              };
+
+              final user = User.fromJson(
+                json,
+              );
+
+              List<String> colors = [];
+              for (int i = 0; i < user.shoes!.length; i++) {
+                colors.add(
+                  user.shoes![i].color,
+                );
+
+                expect(
+                  colors[i],
+                  user.shoes![i].color,
+                );
+              }
+            },
+          );
+
+          test(
+            'Given overcomplete data (including shoes) as string When user is created by fromJson Then chekc user',
+            () {
+              String data =
+                  '{"name": "name","age": 99,"shoes": [{"color": "blue","size": 40,"price": 100.1,"abc": "xyz"},{"color": "red","size": 20,"price": 100.2,"abc": "xyz"},{"color": "green","size": 50,"price": 100.3,"abc": "xyz"},{"color": "yellow","size": 60,"price": 100.4,"abc": "xyz"},{"color": "orange","size": 10,"price": 100.5,"abc": "xyz"}],"foo": "bar"}';
+
+              final user = User.fromJson(
+                json.decode(
+                  data,
+                ),
+              );
+
+              List<String> colors = [];
+              for (int i = 0; i < user.shoes!.length; i++) {
+                colors.add(
+                  user.shoes![i].color,
+                );
+
+                expect(
+                  colors[i],
+                  user.shoes![i].color,
+                );
+              }
+            },
+          );
         },
       );
     },
